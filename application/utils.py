@@ -20,4 +20,5 @@ def format_time(timestamp: int) -> str:
 
 
 def format_time_range(opening_time: str, closing_time: str) -> str:
-    pass
+    """ Returns a formatted string representing an opening time and closing time pair. """
+    return f'{opening_time} - {closing_time}'
