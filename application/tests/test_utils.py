@@ -1,6 +1,7 @@
 import pytest
 
 from application.utils import format_time
+from application.utils import format_time_range
 
 
 @pytest.mark.parametrize(
@@ -17,3 +18,7 @@ from application.utils import format_time
 )
 def test_format_time(unix_timestamp, formatted_time):
     assert format_time(unix_timestamp) == formatted_time
+
+
+def test_format_time_range():
+    assert format_time_range('12 PM', '9:30 AM') == '12 PM - 9:30 AM'

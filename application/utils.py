@@ -17,3 +17,7 @@ def format_time(timestamp: int) -> str:
             formatted_time = current_time.format('h A')
 
     return formatted_time
+
+
+def format_time_range(opening_time: str, closing_time: str) -> str:
+    pass
