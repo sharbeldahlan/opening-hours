@@ -25,8 +25,8 @@ Here is a preliminary high-level plan.
 
 - [x] Write preliminary plan 
 - [x] Prepare project dependencies.
-- [ ] Create Django project.
-- [ ] Create application within the project and give it the url.
+- [x] Create Django project.
+- [x] Create application within the project and give it the url.
 - [x] Install Django REST Framework.
 - [ ] Write unit tests for API Validators
 - [ ] Write the API endpoints with validators.
