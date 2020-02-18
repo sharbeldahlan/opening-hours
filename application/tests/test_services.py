@@ -77,3 +77,19 @@ def test_parse_input_times(day, times):
     parsed_times_dict = parse_input_times(data)
     assert parsed_times_dict[day] == times
 
+
+def test_overflowing_closing_time():
+    """
+    Test case for when a restaurant does not close during the same day,
+    the overflowing closing time needs to appear on the same day of the opening time.
+    """
+    data['monday'] = [{
+        'type': 'close',
+        'value': 95400
+    }]
+    data['sunday'].append({
+        'type': 'open',
+        'value': 81000
+    })
+    parsed_times_dict = parse_input_times(data)
+    assert parsed_times_dict['sunday'] == ['12 PM - 9 PM', '10:30 PM - 2:30 AM']
