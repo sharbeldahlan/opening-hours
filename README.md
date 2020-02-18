@@ -23,16 +23,16 @@ Here is a preliminary high-level plan.
 
 ## To-do list
 
-- [x] Write preliminary plan 
+- [x] Write preliminary plan.
 - [x] Prepare project dependencies.
 - [x] Create Django project.
 - [x] Create application within the project and give it the url.
 - [x] Install Django REST Framework.
-- [ ] Write unit tests for utils to format time
-- [ ] Write utils that format the time
-- [ ] Write unit tests for main logic service.
-- [ ] Write main logic service.
-- [ ] Write unit tests for API Validators
+- [x] Write unit tests for utils to format time.
+- [x] Write utils that format the time.
+- [x] Write unit tests for main logic service.
+- [x] Write main logic service.
+- [ ] Write unit tests for API Validators.
 - [ ] Write the API endpoints with validators.
 - [ ] Iterate on tests/logic and add integration tests.
 - [ ] Run tests and iterate. Make sure everything is in check.
