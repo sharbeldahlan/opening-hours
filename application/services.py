@@ -8,11 +8,12 @@ from application.utils import format_time_range
 
 def parse_input_times(data: dict) -> Dict[str, List[str]]:
     """
-    Parse the serialized data dict and convert it to a dict of human readable data
+    Parses the serialized data dict and convert it to a dict of human readable data
     in the format: {day: list_of_opening_hour_ranges_per_day}
     """
     opening_time = None
     day_of_opening_time = None
+    overflowing_closing_time = None
     times_dict = {}
     for day, events_of_a_day in data.items():
         times_dict[day] = []
@@ -22,6 +23,12 @@ def parse_input_times(data: dict) -> Dict[str, List[str]]:
                 day_of_opening_time = day
             else:
                 closing_time = format_time(event['value'])
-                times_dict[day_of_opening_time].append(format_time_range(opening_time, closing_time))
+                if opening_time is not None:
+                    times_dict[day_of_opening_time].append(format_time_range(opening_time, closing_time))
+                else:
+                    overflowing_closing_time = closing_time
+
+    if overflowing_closing_time:
+        times_dict[day].append(format_time_range(opening_time, overflowing_closing_time))
 
     return times_dict
