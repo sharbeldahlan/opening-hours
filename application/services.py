@@ -1,1 +1,2 @@
-# Services to be consumed by the api
+def parse_input_times(data: dict) -> dict:
+    pass
