@@ -2,12 +2,17 @@ from typing import Dict
 from typing import List
 
 from application.constants import EVENT_TYPE_OPEN
+from application.utils import format_output
 from application.utils import format_time
 from application.utils import format_time_range
 
 
 def to_human_readable_times(data: dict) -> str:
-    pass
+    """ Main service to parse the input then format it to human readable times"""
+    parsed_times_dict = parse_input_times(data)
+    human_readable_times = format_output(parsed_times_dict)
+
+    return human_readable_times
 
 
 def parse_input_times(data: dict) -> Dict[str, List[str]]:
