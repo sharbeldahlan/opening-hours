@@ -25,4 +25,13 @@ def format_time_range(opening_time: str, closing_time: str) -> str:
 
 
 def format_output(data: dict) -> str:
-    pass
+    """ Returns the human readable string from the formatted dict. """
+    lines = []
+    for day, times in data.items():
+        if times:
+            lines.append(f'{day.title()}: {", ".join(times)}')
+        else:
+            lines.append(f'{day.title()}: Closed')
+    formatted_output = '\n'.join(lines)
+
+    return formatted_output
