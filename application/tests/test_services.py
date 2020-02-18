@@ -1,6 +1,7 @@
 import pytest
 
 from application.services import parse_input_times
+from application.services import to_human_readable_times
 
 
 # Example payload data
@@ -93,3 +94,17 @@ def test_overflowing_closing_time():
     })
     parsed_times_dict = parse_input_times(data)
     assert parsed_times_dict['sunday'] == ['12 PM - 9 PM', '10:30 PM - 2:30 AM']
+
+
+def test_to_human_readable_times():
+    """ Test the main service end to end """
+    expected_output = (
+        'Monday: Closed\n'
+        'Tuesday: 10 AM - 6 PM\n'
+        'Wednesday: Closed\n'
+        'Thursday: 10 AM - 6 PM\n'
+        'Friday: 10 AM - 1 AM\n'
+        'Saturday: 10 AM - 1 AM\n'
+        'Sunday: 12 PM - 9 PM'
+    )
+    assert to_human_readable_times(data) == expected_output

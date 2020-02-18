@@ -6,6 +6,10 @@ from application.utils import format_time
 from application.utils import format_time_range
 
 
+def to_human_readable_times(data: dict) -> str:
+    pass
+
+
 def parse_input_times(data: dict) -> Dict[str, List[str]]:
     """
     Parses the serialized data dict and convert it to a dict of human readable data
