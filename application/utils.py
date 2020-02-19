@@ -1,3 +1,4 @@
+""" Contains formatting functions used by the services. """
 import arrow
 
 
