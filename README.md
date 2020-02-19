@@ -32,9 +32,11 @@ Here is a preliminary high-level plan.
 - [x] Write utils that format the time.
 - [x] Write unit tests for main logic service.
 - [x] Write main logic service.
-- [ ] Write unit tests for API Validators.
-- [ ] Write the API endpoints with validators.
-- [ ] Iterate on tests/logic and add integration tests.
-- [ ] Run tests and iterate. Make sure everything is in check.
+- [x] Write unit tests for API Validators.
+- [x] Write the API serializers and validators.
+- [ ] Write tests for the API View
+- [ ] Write integration tests.
+- [ ] Write the API view.
+- [ ] Iterate on tests/logic if needed. Make sure everything is in check.
 - [ ] Update README with "How To Run" section.
 - [ ] Update README with architecture decisions and pros and cons.
