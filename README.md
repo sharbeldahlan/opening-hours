@@ -37,6 +37,6 @@ Here is a preliminary high-level plan.
 - [x] Write tests for the API View
 - [x] Write integration tests.
 - [x] Write the API view.
-- [ ] Iterate on tests/logic if needed. Make sure everything is in check.
+- [x] Iterate on tests/logic if needed. Make sure everything is in check.
 - [ ] Update README with "How To Run" section.
 - [ ] Update README with architecture decisions and pros and cons.
