@@ -5,6 +5,7 @@ An API that takes JSON-formatted opening hours of a restaurant as an input and o
 
 * [How to run](#how-to-run)
 * [How to run tests](#how-to-run-tests)
+* [Thoughts and Reflections](#thoughts-and-reflections)
 * [To-do list](#to-do-list)
 
 
@@ -16,7 +17,7 @@ An API that takes JSON-formatted opening hours of a restaurant as an input and o
 1. Access the endpoint on `http://127.0.0.1:8000/api/`. You can get and post to the endpoint directly from the web browser.
 7. Enjoy! 🎉
 
-Example payload:
+### Example payload:
 ```json
 {
     "monday": [],
@@ -48,6 +49,76 @@ Example payload:
 * Tests: run command `pytest` in the project root.
 * Test coverage report: run `pytest --cov=application application/tests` in the project root.
 
+## Thoughts and Reflections
+In general, this exercise provides a good software engineering practice and thinking. More understanding of the context in which such API is used would help me assess better how the structure of the payload could be improved.
+Nonetheless, what comes my mind are three different ways of structuring the data:
+* [Structuring the payload for easier serializing](#structuring-the-payload-for-easier-serializing)
+* [Making the open and close events more contained](#making-the-open-and-close-events-more-contained)
+* [The lazy approach](#the-lazy-approach)
+
+### Structuring the payload for easier serializing
+Perhaps if the input data was formatted in a slightly different manner, writing serializers would have been easier.
+For example, instead of having the days as keys, we could have a "day" key and its value as the days. That way, the payload would look like this:
+```json
+{
+  "data": [
+    {
+        "day": "monday",
+        "events": [
+          {
+            "type": "open",
+            "value": 36000
+          },
+        ]
+    }
+  ]
+}
+```
+...and the serializers would then be as simple as:
+
+```python
+class EventOfADaySerializer(serializers.Serializer):
+    type = serializers.ChoiceField(choices=EVENT_TYPE_CHOICES)
+    value = serializers.IntegerField(validators=[is_integer])
+
+
+class DayOfTheWeekSerializer(serializers.Serializer):
+    day = serializers.ChoiceField(choices=DAYS_OF_THE_WEEK)
+    events = EventOfADaySerializer(many=True)
+
+```
+Still, this change only tackles one aspect, and not really simplifying the way the hours of each day are handled.
+
+### Making the open and close events more contained
+Another option is that we could go a step further to simplify the payload, and replace the dicts containing `"type"` and `"value"`  with `"opening_time"` and `"closing_time"`, like this:
+
+```json
+{
+  "monday": [
+    {
+      "opening_time": 32400,
+      "closing_time": 3600,
+      "next_day": true
+    }
+  ]
+}
+``` 
+This way the open and close times are _contained_ in one dict rather than existing in different "packets", which could also simplify the logic of closing events over midnight. However, it might be tricky to assess if a smaller `"closing_time"` value means _over midnight_ closing or a mere error in the data. It might then be a good idea to look into an additional parameter `"next_day"` to ensure data validity.
+
+### The lazy approach
+Of course, one could ask for the input data to be almost like the human readable format, as follows:
+
+```json
+{
+  "monday": [
+    {
+      "opening_time": "12 PM",
+      "closing_time": "12:30 AM"
+    }
+  ]
+}
+```
+which leaves not much room for code to be written, but don't they say "the best code is no code"? `¯\_(ツ)_/¯`. On a serious note, it's probably a bad idea to forgo the luxury of a 32-bit Unix timestamp at least for the next 18 years.
 
 ## To-do list
 
@@ -67,4 +138,4 @@ Example payload:
 - [x] Write the API view.
 - [x] Iterate on tests/logic if needed. Make sure everything is in check.
 - [x] Update README with "How To Run" section.
-- [ ] Update README with reflections.
+- [x] Update README with reflections.
