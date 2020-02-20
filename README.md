@@ -1,6 +1,8 @@
 # opening-hours
 An API that takes JSON-formatted opening hours of a restaurant as an input and outputs hours in a more human readable format.
 
+![](demo.gif)
+
 * [How to run](#how-to-run)
 * [How to run tests](#how-to-run-tests)
 * [To-do list](#to-do-list)
