@@ -3,21 +3,35 @@ An API that takes JSON-formatted opening hours of a restaurant as an input and o
 
 ![](demo.gif)
 
+## Contents
 * [How to run](#how-to-run)
-* [How to run tests](#how-to-run-tests)
+* [How to run tests and other dev tools](#how-to-run-tests-and-other-dev-tools)
 * [Thoughts and Reflections](#thoughts-and-reflections)
 * [To-do list](#to-do-list)
 
 
 ## How to run
-1. Clone this repository then go to the project's root folder.
-1. Run `pipenv install` to get all the project's requirements from Pipfile.
+1. Clone this repository then go to the root directory `opening-hours/`.
+1. Run `pipenv install` to get all the project's requirements from Pipfile. You need to have `pipenv` installed on your machine.
 1. Run `pipenv shell` to activate your virtual environment.
+1. Go to the `project/` directory and create a `.env` file to store environment variables: `touch .env`.
+1. Obtain a secret key from [MiniWebTool](https://miniwebtool.com/django-secret-key-generator/).
+1. Add the SECRET_KEY and the DEBUG environment variables with their values to the `.env` file as follows: 
+
+     ```
+     DEBUG=on
+     SECRET_KEY='<secret_key_you_obtained_from_MiniWebTool>'
+     ```
+
+1. Go back to the root directory and run `python manage.py migrate`
 1. Start the application by running `python manage.py runserver`.
 1. Access the endpoint on `http://127.0.0.1:8000/api/`. You can get and post to the endpoint directly from the web browser.
-7. Enjoy! 🎉
+1. Enjoy! 🎉
+
+From now on, whenever you want to start the project again, all you need is steps 3, 8, and 9.
 
 ### Example payload:
+You can post this JSON payload to the API endpoint.
 ```json
 {
     "monday": [],
@@ -45,9 +59,12 @@ An API that takes JSON-formatted opening hours of a restaurant as an input and o
 }
 ```
 
-## How to run tests
+## How to run tests and other dev tools
+To run the tests and use other dev-packages for various purposes like test coverage or flake8 reports, you need to run `pipenv install --dev`.
 * Tests: run command `pytest` in the project root.
 * Test coverage report: run `pytest --cov=application application/tests` in the project root.
+* Flake8 reports: run `flake8` in the project root.
+* Mypy for type checking: run `mypy path/to/program.py` in the project root.
 
 ## Thoughts and Reflections
 In general, this exercise provides a good software engineering practice and thinking. More understanding of the context in which such API is used would help me assess better how the structure of the payload could be improved.
