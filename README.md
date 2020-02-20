@@ -1,25 +1,51 @@
 # opening-hours
 An API that takes JSON-formatted opening hours of a restaurant as an input and outputs hours in a more human readable format.
 
-* [Needed components](#needed-components)
+* [How to run](#how-to-run)
+* [How to run tests](#how-to-run-tests)
 * [To-do list](#to-do-list)
 
-## Needed components
-Here is a preliminary high-level plan.
 
-### Input
-* The input is in the format of a JSON file.
-* Input runs through a validator. Validity of the input to be communicated through the interface.
-* API view to pass the cleaned input to the service for processing.
+## How to run
+1. Clone this repository then go to the project's root folder.
+1. Run `pipenv install` to get all the project's requirements from Pipfile.
+1. Run `pipenv shell` to activate your virtual environment.
+1. Start the application by running `python manage.py runserver`.
+1. Access the endpoint on `http://127.0.0.1:8000/api/`. You can get and post to the endpoint directly from the web browser.
+7. Enjoy! 🎉
 
-### Processing
-* Service to receive the cleaned data and apply conversion logic.
-* Converted logic to be returned to the API view.
+Example payload:
+```json
+{
+    "monday": [],
+    "tuesday": [
+        {"type": "open", "value": 36000},
+        {"type": "close", "value": 64800}
+    ],
+    "wednesday": [],
+    "thursday": [
+        {"type": "open", "value": 36000},
+        {"type": "close", "value": 64800}
+    ],
+    "friday": [
+        {"type": "open", "value": 36000}
+    ],
+    "saturday": [
+        {"type": "close", "value": 3600},
+        {"type": "open", "value": 36000}
+    ],
+    "sunday": [
+        {"type": "close", "value": 3600},
+        {"type": "open", "value": 43200},
+        {"type": "close", "value": 75600}
+    ]
+}
+```
 
-### Output
-* Converted data returned to API view.
-* Converted data further formatted in some template. 
- 
+## How to run tests
+* Tests: run command `pytest` in the project root.
+* Test coverage report: run `pytest --cov=application application/tests` in the project root.
+
 
 ## To-do list
 
@@ -38,5 +64,5 @@ Here is a preliminary high-level plan.
 - [x] Write integration tests.
 - [x] Write the API view.
 - [x] Iterate on tests/logic if needed. Make sure everything is in check.
-- [ ] Update README with "How To Run" section.
-- [ ] Update README with architecture decisions and pros and cons.
+- [x] Update README with "How To Run" section.
+- [ ] Update README with reflections.
