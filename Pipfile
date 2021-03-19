@@ -13,7 +13,7 @@ pytest-cov = "==2.8.1"
 
 [packages]
 django = "==3.0.3"
-djangorestframework = "==3.10.3"
+djangorestframework = "==3.11.2"
 django-environ = "==0.4.5"
 arrow = "==0.15.5"
 
